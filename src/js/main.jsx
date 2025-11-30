@@ -1,18 +1,29 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-//Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap"
 
-// index.css'
-import '../styles/index.css'
 
-// components
-import Home from './components/Home';
+import SimpleCounter from './components/SimpleCounter';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Home/>
-  </React.StrictMode>,
-)
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+let counter = 0;
+
+
+const renderCounter = () => {
+    root.render(
+        <React.StrictMode>
+            <SimpleCounter seconds={counter} />
+        </React.StrictMode>
+    );
+};
+
+
+renderCounter();
+
+setInterval(() => {
+    counter += 1;
+    renderCounter();
+}, 1000);
